@@ -45,7 +45,8 @@ def baidu_search(v_keyword, v_max_page):
         time.sleep(wait_seconds)  # 随机等待
         url = 'https://www.baidu.com/s?wd=' + \
             v_keyword + '&pn=' + str(page * 10)
-        r = requests.get(url, headers=headers)
+        proxies =  {'http':'', 'https':'',}# 代理设置为空,即禁用代理
+        r = requests.get(url, headers=headers, proxies=proxies)
         html = r.text
         link = re.findall(
             "https://ada.baidu.com/site/.*?xyl.imid........................................", html)
